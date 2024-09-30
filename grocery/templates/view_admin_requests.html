@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Requests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fafafa;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        strong {
+            color: #333;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .status-processing {
+            background-color: #ffc107;
+            color: #fff;
+        }
+        .status-delivered {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .status-pending {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+        .status-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 0;
+            font-size: 14px;
+            width: auto;
+        }
+        .status-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Requests</h2>
+        <ul id="admin-requests-list">
+            {% for request in admin_requests %}
+                <li id="request-{{ request.id }}">
+                    <strong>Product Name:</strong> {{ request.product_name }}<br>
+                    <strong>Description:</strong> {{ request.description }}<br>
+                    <strong>Status:</strong> 
+                    <span class="status {% if request.status == 'processing' %}status-processing{% elif request.status == 'delivered' %}status-delivered{% else %}status-pending{% endif %}">
+                        {{ request.status }}
+                    </span><br>
+                    <button class="status-btn" data-id="{{ request.id }}" data-status="processing">Processing</button>
+                    <button class="status-btn" data-id="{{ request.id }}" data-status="delivered">Delivered</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.status-btn').click(function() {
+            var requestId = $(this).data('id');
+            var status = $(this).data('status');
+            $.ajax({
+                url: '{% url "update_request_status" %}',
+                method: 'POST',
+                data: {
+                    'request_id': requestId,
+                    'status': status,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    if(response.success) {
+                        var statusClass = status == 'processing' ? 'status-processing' : 'status-delivered';
+                        $('#request-' + requestId + ' .status')
+                            .text(status)
+                            .attr('class', 'status ' + statusClass);
+                    } else {
+                        alert(response.error);
+                    }
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

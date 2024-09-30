@@ -1,0 +1,45 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<style>
+    .bg-image {
+        background-image: url('https://img.freepik.com/free-photo/pet-accessories-still-life-with-chew-bone-brush-fur_23-2148949559.jpg?t=st=1709303990~exp=1709307590~hmac=d920d51ee427a5ac5aec5e24d3a0ecde5c3979152896bc7e80340a72bb3364e1&w=1060');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.9); /* Adjust the opacity as needed */
+        padding: 20px;
+        border-radius: 10px;
+        width: 70%;
+        max-width: 600px;
+    }
+</style>
+
+<div class="bg-image">
+    <div class="form-container">
+        <h2 style="margin-top:20px; text-align:center;">Booking Between Dates Report</h2>
+        <hr>
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="fromDate">From Date</label>
+                <input type="date" class="form-control" id="fromDate" name="fromdate" required>
+            </div>
+            <div class="form-group">
+                <label for="toDate">To Date</label>
+                <input type="date" class="form-control" id="toDate" name="todate" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

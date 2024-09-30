@@ -1,0 +1,122 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<style>
+    body {
+    background-image: url('https://image.freepik.com/free-photo/black-white-pattern-tie_1205-358.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    .container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        width: 70%;
+        margin: 10% auto;
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <h2 style="margin-top:20px; text-align:center;">Registration Form</h2>
+    <hr>
+
+    <form method="post" action="" enctype="multipart/form-data" onsubmit="return validateEmail()">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>First Name</label>
+                <input type="text" class="form-control" placeholder="Enter First Name" name="fname" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>User Name</label>
+                <input type="text" class="form-control" name="uname" placeholder="Enter User Name" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Password</label>
+                <input type="password" class="form-control" name="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$" 
+           title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character" required>
+    <small>Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter Email" required>
+                <span id="emailError" style="color: red;"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Contact</label>
+                <input type="text" class="form-control" placeholder="Enter Contact Detail" name="contact" maxlength="10" pattern="[0-9]{10}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>City</label>
+                <input type="text" class="form-control" placeholder="Enter City" name="city" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Date of Birth</label>
+                <input type="date" class="form-control" name="date" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Full Address</label>
+                <input type="text" class="form-control" placeholder="Enter Address Detail" name="add" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Image</label>
+                <input type="file" class="form-control" name="img" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
+
+<script>
+    function validateEmail() {
+        var emailInput = document.getElementById("exampleInputEmail1");
+        var email = emailInput.value.trim();
+        
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!emailRegex.test(email)) {
+            document.getElementById("emailError").innerText = "Please enter a valid email address.";
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+{% if error %}
+<script>
+    alert('Registered Successfully');
+    window.location = "{% url 'login' %}";
+</script>
+{% endif %}
+
+{% endblock %}

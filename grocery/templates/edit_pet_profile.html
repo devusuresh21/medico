@@ -1,0 +1,125 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Pet Profile</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<style>
+    /* style.css */
+
+body {
+    
+    font-family: Arial, sans-serif;
+    background-color: #3844f3;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://img.freepik.com/premium-photo/large-group-cats-dogs-looking-camera-blue-background_191971-28557.jpg?w=2000');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    margin: 50px auto;
+    padding: 20px;
+    width: 50%;
+    background-color: #f7f3f3;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e85d07;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-top: 5px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #0dc247;
+    color: #f04d07;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2ce235;
+}
+
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Pet Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ pet_profile.name }}">
+            </div>
+            <div class="form-group">
+                <label for="breed">Breed:</label>
+                <input type="text" id="breed" name="breed" value="{{ pet_profile.breed }}">
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" value="{{ pet_profile.age }}">
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image">
+                {% if current_image %}
+                    <img src="{{ current_image.url }}" alt="Current Image">
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="veterinarian">Veterinarian:</label>
+                <input type="text" id="veterinarian" name="veterinarian" value="{{ pet_profile.veterinarian }}">
+            </div>
+            <div class="form-group">
+                <label for="visit_date">Visit Date:</label>
+                <input type="date" id="visit_date" name="visit_date" value="{% if current_visit_date %}{{ current_visit_date }}{% endif %}">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

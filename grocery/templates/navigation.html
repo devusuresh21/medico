@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>𝑀𝐸𝒟𝐼𝒞𝒪</title>
+    <link rel="icon" href="images/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
+  <style>
+    /* Global Styles */
+    body {
+        font-family: 'Lato', sans-serif;
+        
+        background-image: url('https://drive.google.com/file/d/1kYcur9aBKitorAyhZBazCZCX-EZ4yYP_/view?usp=drivesdk'); 
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        color: #333;
+    }
+    
+    .navbar {
+        background-color: rgba(46, 44, 44, 0.9);
+        border-bottom: 1px solid #2a2a2b;
+    }
+
+    .navbar-brand {
+        font-size: 2.5rem;
+        color: #28eeee !important;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 95, 115, 0.2);
+    }
+
+    .navbar-nav .nav-link {
+        color: #f7f7fb !important;
+        font-weight: 600;
+        padding: 12px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #ffffff !important;
+        background-color: #00a896;
+        border-radius: 10px;
+    }
+
+    /* Product Cards */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Center cards horizontally */
+        list-style: none;
+        padding: 0;
+        margin: 20px 0; /* Margin for spacing above and below the product list */
+    }
+
+    .product-item {
+        background-color: #ffffff; /* White background for the card */
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 15px; /* Space around each card */
+        max-width: 300px; /* Maximum width for each card */
+        transition: transform 0.3s ease;
+        overflow: hidden; /* Ensure content stays within the card */
+    }
+
+    .product-item:hover {
+        transform: translateY(-5px); /* Subtle hover effect */
+    }
+
+    .product-item img {
+        width: 100%; /* Full width image for the card */
+        height: auto;
+    }
+
+    .product-details {
+        padding: 15px; /* Padding inside the card */
+    }
+
+    .product-details strong {
+        font-size: 1.2rem;
+        color: #333;
+        display: block; /* Make strong elements block for better spacing */
+        margin-bottom: 5px;
+    }
+
+    .product-details p {
+        font-size: 0.9rem;
+        color: #666;
+        margin: 5px 0; /* Margin around paragraphs */
+    }
+
+    .price {
+        font-size: 1.5rem;
+        color: #d9534f; /* Red color for price */
+        font-weight: bold;
+        margin-top: 10px; /* Space above the price */
+    }
+
+    /* Tables */
+    #myTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+    }
+
+    #myTable th {
+        background-color: #00a896;
+        color: white;
+        padding: 12px;
+    }
+
+    #myTable td {
+        background-color: #f5f5f5;
+        padding: 12px;
+    }
+
+    #myTable tr:hover {
+        background-color: #e0f7fa;
+    }
+
+    /* Buttons */
+    .button {
+        background-color: #00bfa5;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #00796b;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #00a896;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #00796b;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    footer a {
+        color: #e0f7fa;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style="background-color: #f0f0f0;">
+<nav class="navbar navbar-expand-sm" style="background-color : #3e3e4a ; border-bottom:1px solid #131313">
+    <a class="navbar-brand pl-3" href="#" style="color: rgb(223, 223, 245); font-weight: bold; font-size: 3rem; text-shadow: 2px 2px rgb(65, 66, 69);">𝑀𝐸𝒟𝐼𝒞𝒪</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav pl-2 text-center">
+            {% if request.user.is_staff %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_home' %}" style="color:rgb(0, 0, 0)"><ion-icon style="margin-right:0px" name="home-sharp"></ion-icon>Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'view_user' %}" style="color:rgb(2, 1, 1)"><ion-icon style="margin-right:0px" name="people"></ion-icon>ViewUser</a>
+            </li>
+           
+            
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'sales_visualization' %}">
+                    <ion-icon style="margin-right: 0px" name="bar-chart-outline"></ion-icon> customer login Info
+                </a>
+            </li>
+            
+        
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color:rgb(0, 0, 0)"><ion-icon style="margin-right:0px" name="albums"></ion-icon>Doctor</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'add_product' %}">Add Doctor</a>
+                    <a class="dropdown-item" href="{% url 'admin_view_product' %}">View Doctor</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color:rgb(0, 0, 0)"><ion-icon style="margin-right:1px" name="newspaper-sharp"></ion-icon>Category</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'add_categary' %}">Add Category</a>
+                    <a class="dropdown-item" href="{% url 'view_categary' %}">View Category</a>
+                </div>
+            </li>
+            <div class="dashboard">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}" style="color:rgb(0, 0, 0)"><ion-icon style="margin-right:1px" name="power-sharp"></ion-icon>Logout</a>
+                </li> 
+            </div>
+            {% endif %}
+            {% if request.user.username %}
+                {% if not request.user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view_product' 0 %}" style="color:rgb(0, 0, 0)"><ion-icon style="margin-right:2px" name="eye"></ion-icon>Home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'get_weather' %}" style="color: rgb(0, 0, 0);">
+                        <ion-icon style="margin-right: 0px" name="sunny"></ion-icon>Weather
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'chatbot' %}" style="color: rgb(0, 0, 0);">
+                        <ion-icon style="margin-right: 0px" name="medkit"></ion-icon>Get Medicine Info
+                    </a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://disease-symptom-recognition-system-fvd6dwhoihat4niujnsxz8.streamlit.app/" style="color:rgb(0, 0, 0)">
+                        <ion-icon style="margin-right:2px" name="bar-chart"></ion-icon>Analyse
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'change_password' %}" style="color:rgb(1, 1, 1)"><ion-icon style="margin-right:2px" name="document-text-sharp"></ion-icon>Change Password</a>
+                </li>
+                <li class="nav-item dropdown"></li>
+                {% endif %}
+                {% if not request.user.is_staff %}
+                
+                {% endif %}
+                
+                {% if not request.user.is_staff %}
+                <li class="nav-item">
+                    <a href="{% url 'profile' %}"><h5 class="nav-link" style="color:#000000 ; text-transform : capitalize"><ion-icon style="margin-right:4px;color:#5e99de" name="person-circle-sharp"></ion-icon>Welcome {{request.user.username}}</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}" style="color:rgb(0, 0, 0)"><ion-icon style="margin-right:1px" name="power-sharp"></ion-icon>Logout</a>
+                </li>
+                {% endif %}
+            {% else %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}" style="color:rgb(15, 14, 14);text-align:right"><ion-icon style="margin-right:2px" name="log-in-sharp"></ion-icon>User Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login_admin' %}" style="color:rgb(6, 6, 6);text-align:right"><ion-icon style="margin-right:2px" name="log-in-sharp"></ion-icon>Admin Login</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    
+                </ul>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% block body %}
+{% endblock %}
+</body>
+</html>

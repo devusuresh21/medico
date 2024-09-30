@@ -1,0 +1,78 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Blog</title>
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/premium-photo/large-group-cats-dogs-looking-camera-blue-background_191971-28557.jpg?w=2000');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; /* Add margin to the top to create space below the navbar */
+        }
+
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Blog</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" value="{{ blog.title }}" required><br>
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content" required>{{ blog.content }}</textarea><br>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock %}

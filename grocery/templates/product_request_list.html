@@ -1,0 +1,21 @@
+<!-- product_request_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Request View</title>
+</head>
+<body>
+    <h1>Supplier Requests</h1>
+    <ul>
+        {% for request in supplier_requests %}
+            <li>
+                <strong>Requested By:</strong> {{ request.requested_by.username }}<br>
+                <strong>Requested At:</strong> {{ request.created_at }}<br>
+                <strong>Details:</strong> {{ request.details }}<br>  <!-- Display request details -->
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

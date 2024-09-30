@@ -1,0 +1,86 @@
+{% extends 'navigation.html' %}
+{% block body %}
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+    }
+
+    h2 {
+        color: red; /* Red heading */
+        margin-top: 2%; /* Top margin */
+    }
+
+    .container {
+        margin-top: 5%; /* Top margin */
+        background-color: #ffffff; /* White background */
+        padding: 20px; /* Padding */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+
+    table {
+        width: 100%; /* Full width */
+        border-collapse: collapse; /* Collapse border */
+        margin-top: 20px; /* Top margin */
+    }
+
+    th, td {
+        padding: 10px; /* Padding */
+        border: 1px solid #dee2e6; /* Border color */
+    }
+
+    th {
+        background-color: #dbd5d5; /* Light gray background for table header */
+    }
+
+    .button {
+        background-color: #007bff; /* Blue button */
+        border: none;
+        color: white; /* White text */
+        padding: 10px 20px; /* Padding */
+        text-align: center; /* Center text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Display as inline block */
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s; /* Transition effect on background color */
+    }
+
+    .button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+</style>
+
+<center><h2>View Orders</h2></center>
+<hr>
+<div class="container">
+    <table class="table table-bordered" id="myTable">
+        <thead>
+        <tr>
+            <th>Sr. No</th>
+            <th>Booking ID</th>
+            <th>Booking Date</th>
+            <th>Customer name</th>
+            <th>Email Id</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Cancel Booking</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in book %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.booking_id}}</td>
+            <td>{{i.book_date}}</td>
+            <td>{{i.profile.user.username}}</td>
+            <td>{{i.profile.user.email}}</td>
+            <td>{{i.total}}</td>
+            <td><a href="{% url 'Edit_status' i.booking_id i.id %}" class="button">{{i.status.name}}</a></td>
+            <td><a href="{% url 'delete_admin_booking' i.booking_id i.id %}" onclick="return confirm('Are you sure?')" class="button">cancel</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

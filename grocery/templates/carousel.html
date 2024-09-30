@@ -1,0 +1,50 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+<style>
+    body {
+        background-image: url('https://wallpaperaccess.com/full/20585.jpg'); /* Background image */
+        background-size: cover; /* Cover the entire screen */
+        background-repeat: no-repeat; /* No repeat */
+        background-position: center; /* Center the image */
+        font-family: Arial, sans-serif;
+        color: #362c2c; /* Text color for better visibility */
+    }
+    .carousel-item {
+        position: relative;
+    }
+    .carousel-item img {
+        object-fit: cover;
+        filter: brightness(0.85);
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+    }
+    .carousel-indicators li {
+        background-color: #007bff;
+    }
+    .quote {
+        text-align: center;
+        margin-top: 380px;
+        font-size: 1.5em;
+        font-style: italic;
+        color: black; /* Black text color */
+        padding: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.5); /* Top border for separation */
+    }
+</style>
+
+
+
+<!-- Quote Section -->
+
+<div class="quote animate__animated animate__fadeInDown">
+    "Healthcare is a team effort. Together ..........    we can save lives and improve health."
+</div>
+
+{% block b %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'navigation.html' %}
+{% block body %}
+
+<style>
+/* Table Styles */
+.table-bordered {
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table thead th {
+  background-color: #0044cc;
+  color: white;
+}
+
+.table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table tbody tr td a button {
+  width: 100%;
+  border: none;
+  padding: 6px 10px;
+  color: white;
+  background-color: #0044cc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.table tbody tr td a button:hover {
+  background-color: #6c757d; /* Changed to gray */
+}
+
+/* Button Styles */
+.button1 {
+  color: white;
+  background-color: #0044cc;
+  border: none;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button1:hover {
+  background-color: #6c757d; /* Changed to gray */
+}
+
+/* Centered Heading */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: rgb(0, 19, 126);
+}
+
+/* Container Spacing */
+.container {
+  margin-top: 5%;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  .button1 {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+  
+  .table {
+    font-size: 12px;
+  }
+}
+</style>
+
+<!-- Main Content -->
+<div class="container">
+  <center>
+    <h2></h2>
+    <hr>
+  </center>
+
+  <!-- Booking Table -->
+  <div class="container">
+    <table class="table table-bordered" id="myTable">
+      <thead>
+        <tr>
+          <th>Sr. No</th>
+          <th>Booking ID</th>
+          <th>Booking Date</th>
+          <th>Total</th>
+          <th>Cancel Booking</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in book %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.booking_id }}</td>
+          <td>{{ i.book_date }}</td>
+          <td>{{ i.total }}</td>
+          <td>
+            <a href="{% url 'delete_booking' i.booking_id i.id %}" onclick="return confirm('Are you sure?')">
+              <button class="button1" id="delete">Cancel</button>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+{% endblock %}

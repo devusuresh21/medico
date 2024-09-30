@@ -1,0 +1,35 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<div class="container-fluid p-0" style="background-image: url(''); background-size: cover; background-position: center;">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Change Status</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="bookingId">Booking Id</label>
+                            <input type="text" class="form-control" id="bookingId" aria-describedby="emailHelp" name="book" value="{{ book.booking_id }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select id="status" class="form-control" name="status">
+                                {% for i in stat %}
+                                    <option value="{{ i.name }}">{{ i.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

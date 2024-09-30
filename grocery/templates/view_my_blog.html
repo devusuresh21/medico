@@ -1,0 +1,131 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View My Blog</title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <style>
+        /* style.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-photo/large-group-cats-dogs-looking-camera-blue-background_191971-28557.jpg?w=2000');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            width: 60%;
+            background-color: rgba(239, 168, 241, 0.8); /* Add transparency to the container */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .blog-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .blog-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .blog-card-content {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .blog-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .blog-card-btn {
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .blog-card-btn:hover {
+            background-color: #45a049;
+        }
+
+        .blog-card-delete-btn {
+            padding: 8px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .blog-card-delete-btn:hover {
+            background-color: #d32f2f;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>MY BLOGS</h2>
+        <div class="row">
+            {% if user_blogs %}
+                {% for blog in user_blogs %}
+                    <div class="col-md-6 mb-4">
+                        <div class="blog-card">
+                            <div class="card-body">
+                                <h5 class="blog-card-title">{{ blog.title }}</h5>
+                                <p class="blog-card-content">{{ blog.content }}</p>
+                            </div>
+                            <div class="blog-card-footer">
+                                <span>{{ blog.created_at|date:"F d, Y" }}</span>
+                                {% if request.user == blog.author %}
+                                    <form action="{% url 'delete_blog' blog.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="blog-card-delete-btn">Delete</button>
+                                    </form>
+                                {% endif %}
+                                <a href="{% url 'edit_blog' blog.id %}" class="blog-card-btn">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No blogs found.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+</body>
+</html>
+
+{% endblock %}

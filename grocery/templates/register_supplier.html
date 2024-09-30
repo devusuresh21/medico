@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Registration</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-register {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Supplier Registration</h2>
+        <!-- Message for successful registration -->
+        <div id="registration-success" style="display: none;" class="alert alert-success" role="alert">
+            Registered successfully! Please proceed to login.
+        </div>
+        <form id="registration-form" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="re_password">Re-enter Password:</label>
+                <input type="password" id="re_password" name="re_password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-register">Register</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript for form submission -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('#registration-form').onsubmit = function (event) {
+                // Prevent default form submission
+                event.preventDefault();
+                // Show registration success message
+                document.querySelector('#registration-success').style.display = 'block';
+                // Redirect to the supplier login page after 2 seconds
+                setTimeout(function () {
+                    window.location.href = '/login_supplier'; // Replace '/login_supplier' with your actual login page URL
+                }, 2000); // 2 seconds delay before redirecting
+            };
+        });
+    </script>
+</body>
+</html>

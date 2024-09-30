@@ -1,0 +1,118 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CREATE CAR PROFILE</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <style>
+        /* Custom styles for the create pet profile form */
+        
+        body {
+            background-image: url('https://img.freepik.com/premium-photo/large-group-cats-dogs-looking-camera-blue-background_191971-28557.jpg?w=2000');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        .card {
+            background-color: #f6f1f6;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 0 auto; /* Center the card horizontally */
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .card h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #1414cc;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="date"],
+        .form-group input[type="file"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    {{ block.super }} <!-- Include the extended navigation bar -->
+
+    <div class="card">
+        <h1><span class="dog-symbol">&#x1F43E;
+
+        </span>CREATE PET PROFILE</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="breed">Breed:</label>
+                <input type="text" id="breed" name="breed" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="veterinarian">Veterinarian:</label>
+                <input type="text" id="veterinarian" name="veterinarian" required>
+            </div>
+            <div class="form-group">
+                <label for="visit_date">Visit Date:</label>
+                <input type="date" id="visit_date" name="visit_date" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock %}

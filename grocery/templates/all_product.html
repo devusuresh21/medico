@@ -1,0 +1,85 @@
+{% extends 'carousel.html' %}
+{% block b %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<style>
+.mybtnone:hover {
+    background-color: #ece9e9;
+}
+
+/* Scroll button */
+#scrollbtn {
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    z-index: 99;
+    border: none;
+    color: red;
+    background: #00abff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+</style>
+
+<hr>
+
+<center>
+    <form class="" action="" method="get">
+        <div class="input-group mb-3" style="width:30%">
+            <!-- Search input, if needed, can be added here -->
+        </div>
+    </form>
+</center>
+
+<!-- Search results section -->
+{% if not search_pro %}
+<div class="container-fluid">
+    <!-- Removed products or category section -->
+</div>
+{% else %}
+<div class="container-fluid">
+    <hr>
+    <h2>Search results for "{{ request.GET.search }}"</h2>
+    <hr>
+    <!-- Display search results here -->
+</div>
+{% endif %}
+
+<!-- Section for authenticated users -->
+{% if request.user.is_authenticated %}
+<div class="container-fluid">
+    <hr>
+    <h2 class="text-danger">Recommended for you</h2>
+    <hr>
+    <!-- Recommended products can be added here if required -->
+</div>
+{% endif %}
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+
+<script>
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollbtn.style.display = "block";
+    } else {
+        scrollbtn.style.display = "none";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send Feedback</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  /* Custom CSS styles */
+  body {
+      background-image: url('https://img.freepik.com/premium-photo/bowl-dog-treats-pink-background-with-copy-space-text-insert_176841-1931.jpg?w=1380');
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+  
+  .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+  
+  .container-fluid {
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for container */
+  }
+  
+  .form-control {
+      border-radius: 15px;
+  }
+  
+  .btn-primary {
+      background-color: #007bff; /* Blue button */
+      border: none;
+  }
+  
+  .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  h2 {
+      color: #343a40; /* Dark Gray */
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="container-fluid" style="width:70%;">
+        <h2 style="margin-top:20px" align="center">Send Feedback</h2><hr>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Date</label>
+                    <input type="text" class="form-control" name="date" value="{{date1}}" id="inputEmail4" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Username</label>
+                    <input type="text" class="form-control" name="uname" value="{{request.user.username}}" id="inputPassword4" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" name="email" value="{{request.user.email}}" id="inputEmail4" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Contact</label>
+                    <input type="number" class="form-control" name="contact" value="{{pro.contact}}" id="inputPassword4" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="desc" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% if error %}
+<script>
+    alert('Send feedback Successfully');
+</script>
+{% endif %}
+</body>
+</html>
+
+
+{% endblock %}

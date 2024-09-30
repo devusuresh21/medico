@@ -1,0 +1,83 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Pet Profile</title>
+    <style>
+        
+body {
+    
+    font-family: Arial, sans-serif;
+    background-color: #3844f3;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://img.freepik.com/premium-photo/large-group-cats-dogs-looking-camera-blue-background_191971-28557.jpg?w=2000');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+        .card {
+            position: relative;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+        .details {
+            margin-right: 20px;
+        }
+
+        img {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 10px;
+        }
+
+        .buttons {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .buttons button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        {% if pet_profile.image %}
+            <img src="{{ pet_profile.image.url }}" alt="Pet Image">
+        {% endif %}
+        <div class="details">
+            <h1>Pet Profile</h1>
+            <p><strong>Name:</strong> {{ pet_profile.name }}</p>
+            <p><strong>Breed:</strong> {{ pet_profile.breed }}</p>
+            <p><strong>Age:</strong> {{ pet_profile.age }}</p>
+            <p><strong>Veterinarian:</strong> {{ pet_profile.veterinarian }}</p>
+            <p><strong>Visit Date:</strong> {{ pet_profile.visit_date }}</p>
+        </div>
+        <div class="buttons">
+            <a href="{% url 'edit_pet_profile' pet_profile.id %}"><button>Edit</button></a>
+            <a href="{% url 'delete_pet_profile_confirm' pet_profile.id %}"><button>Delete</button></a>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

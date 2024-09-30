@@ -1,0 +1,85 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">View Profile</h2>
+    
+    <!-- Profile Card -->
+    <div class="card mx-auto" style="max-width: 60%; border: none; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); border-radius: 15px;">
+        <div class="card-body p-5">
+            <!-- Profile Image -->
+            <div class="text-center mb-4">
+                <img src="{{ pro.image.url }}" alt="Profile Image" style="width: 150px; height: 150px; border-radius: 50%; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+            </div>
+
+            <!-- Profile Info -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Full Name:</strong>
+                </div>
+                <div class="col-md-6 text-secondary">
+                    {{ pro.user.first_name }} {{ pro.user.last_name }}
+                </div>
+            </div>
+            <hr>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Email Id:</strong>
+                </div>
+                <div class="col-md-6 text-secondary">
+                    {{ pro.user.email }}
+                </div>
+            </div>
+            <hr>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Contact:</strong>
+                </div>
+                <div class="col-md-6 text-secondary">
+                    {{ pro.contact }}
+                </div>
+            </div>
+            <hr>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Date of Birth:</strong>
+                </div>
+                <div class="col-md-6 text-secondary">
+                    {{ pro.dob }}
+                </div>
+            </div>
+            <hr>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>City:</strong>
+                </div>
+                <div class="col-md-6 text-secondary">
+                    {{ pro.city }}
+                </div>
+            </div>
+            <hr>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <strong>Address:</strong>
+                </div>
+                <div class="col-md-6 text-secondary">
+                    {{ pro.address }}
+                </div>
+            </div>
+
+            <!-- Edit Profile Button -->
+            <div class="text-center mt-4">
+                <a href="{% url 'edit_profile' %}">
+                    <button class="btn btn-primary btn-lg" style="padding: 10px 40px; border-radius: 25px; font-size: 16px;">Edit Profile</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

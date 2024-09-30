@@ -1,0 +1,92 @@
+<!-- products.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light gray background for the body */
+            margin: 0;
+            padding: 20px; /* Padding around the body */
+        }
+
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #333; /* Dark color for the heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center cards horizontally */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .product-item {
+            background-color: #fff; /* White background for the card */
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px; /* Space around each card */
+            max-width: 300px; /* Maximum width for each card */
+            transition: transform 0.3s ease;
+            overflow: hidden; /* Ensure content stays within the card */
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px); /* Subtle hover effect */
+        }
+
+        .product-item img {
+            width: 100%; /* Full width image for the card */
+            height: auto;
+        }
+
+        .product-details {
+            padding: 15px; /* Padding inside the card */
+        }
+
+        .product-details strong {
+            font-size: 1.2rem;
+            color: #333;
+            display: block; /* Make strong elements block for better spacing */
+            margin-bottom: 5px;
+        }
+
+        .product-details p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 5px 0; /* Margin around paragraphs */
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: #d9534f; /* Red color for price */
+            font-weight: bold;
+            margin-top: 10px; /* Space above the price */
+        }
+    </style>
+</head>
+<body>
+    <h1>All Products</h1>
+    <ul class="product-container">
+        {% for product in products %}
+        <li class="product-item">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="product-details">
+                <strong>Name: {{ product.name }}</strong>
+                <span class="phone number">{{ product.price }}</span>
+                <p><strong>Description:</strong> {{ product.description }}</p>
+                <p><strong>Stock:</strong> {{ product.stock }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

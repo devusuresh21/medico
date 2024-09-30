@@ -1,0 +1,71 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<div class="container-fluid p-0" style="background-image: url('https://img.freepik.com/free-photo/top-view-food-bowl-with-bone-gift-animal-day_23-2148668887.jpg?t=st=1709303606~exp=1709307206~hmac=92a5a575f0021bd86560a7bdaa4a6972845f22da65a1683404cada5476c07afc&w=1060'); background-size: cover; background-position: center;">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Edit doctor</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="productName">doctor  Name</label>
+                            <input type="text" class="form-control" value="{{ product.name }}" name="pname" id="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productName"></label>
+                        <input type="text" name="stock" value="{{ product.stock }}">
+                    </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="productImage">Image</label>
+                                <input type="file" class="form-control" id="productImage" name="img">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <img src="{{ product.image.url }}" width="100px" height="80px">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="category">Category</label>
+                                <select id="category" class="form-control" name="cat">
+                                    <option value="{{ product.category.name }}">{{ product.category.name }}</option>
+                                    {% for i in cat %}
+                                    <option value="{{ i.name }}">{{ i.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="productPrice">Phone number</label>
+                                <input type="number" class="form-control" name="price" required value="{{ product.price }}" id="productPrice">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription">Description</label>
+                            <textarea class="form-control" id="productDescription" name="desc" rows="3" required>{{ product.desc }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Product detail has been updated.');
+    window.location = '{% url 'edit_product' product.id %}';
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong, Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+{% if error == "yes" %}
+<script>
+    alert('logged in successfully');
+    window.location = '{% url 'admin_home' %}';
+</script>
+{% endif %}
+{% if error == "not" %}
+<script>
+    alert('Username & Password are not Matching');
+</script>
+{% endif %}
+<style>
+  /* Updated CSS */
+  body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://wallpaperaccess.com/full/505751.jpg');
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+  }
+
+  .navbar {
+    width: 100%;
+      align-self: flex-start;
+  }
+
+  .login-container {
+      max-width: 400px;
+      margin-top: 50px; /* Adjust margin-top to center the login card vertically */
+  }
+
+  .card {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+  }
+
+  h2 {
+      color: #333;
+      margin-top: 20px;
+  }
+
+  label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #555;
+  }
+
+  input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
+
+  button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+  }
+
+  button:hover {
+      background-color: #45a049;
+  }
+
+  p {
+      color: #555;
+  }
+
+  a {
+      color: #007bff;
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: underline;
+  }
+</style>
+
+<div class="container login-container">
+    <div class="card">
+        <h2 align="center">Admin Login Form</h2>
+        <hr>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uname" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd">
+            </div>
+            <button type="submit" class="btn btn-primary mybtnone">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

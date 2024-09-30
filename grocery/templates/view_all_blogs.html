@@ -1,0 +1,79 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL BLOGS</title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <style>
+        /* Custom styles for blog listing */
+        body {
+            background-image: url('https://img.freepik.com/premium-photo/large-group-cats-dogs-looking-camera-blue-background_191971-28557.jpg?w=2000');
+            background-color: #a3ccf4; /* Set a light background color */
+            font-family: Arial, sans-serif; /* Use a common font family */
+            color: #333; /* Set text color */
+        }
+        
+        .container {
+            max-width: 800px; /* Limit the width of the content */
+            margin: 0 auto; /* Center the container */
+            padding: 20px; /* Add some padding */
+        }
+        
+        .blog-list {
+            margin-top: 20px; /* Add space above the blog list */
+        }
+        
+        .blog-item {
+            background-color: #f5f6fb; /* Set background color for each blog item */
+            border: 1px solid #c70894; /* Add a border */
+            border-radius: 5px; /* Add rounded corners */
+            padding: 20px; /* Add padding */
+            margin-bottom: 20px; /* Add space between blog items */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        }
+        
+        .blog-title {
+            font-size: 24px; /* Set title font size */
+            font-weight: bold; /* Make title bold */
+            margin-bottom: 10px; /* Add space below title */
+            color: #007bff; /* Set title color */
+        }
+        
+        .blog-content {
+            margin-bottom: 15px; /* Add space below content */
+            color: #110101; /* Set content color */
+        }
+        
+        .blog-meta {
+            color: #0a0404; /* Set meta information color */
+            font-size: 14px; /* Set meta information font size */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">All Blogs</h2>
+        <div class="blog-list">
+            <!-- Display all blogs -->
+            {% for blog in all_blogs %}
+                <div class="blog-item">
+                    <h3 class="blog-title">{{ blog.title }}</h3>
+                    
+                    <p class="blog-content">{{ blog.content }}</p>
+                    <div class="blog-meta">
+                        <p>Author: {{ blog.author }}</p>
+                        <p>Date Created: {{ blog.created_at }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No blogs found.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

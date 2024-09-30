@@ -1,0 +1,49 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <h2 style="margin-top:20px" align="center">Add Doctor</h2><hr>
+
+    <div class="card mx-auto" style="width: 70%; margin-top: 10%; background-image: url('https://www.google.com/imgres?q=car%20images%20white%20background&imgurl=https%3A%2F%2Fwww.shutterstock.com%2Fshutterstock%2Fphotos%2F2287677185%2Fdisplay_1500%2Fstock-photo-vintage-green-retro-automobile-figurine-with-black-wheels-parked-on-white-background-in-studio-2287677185.jpg&imgrefurl=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fcars-white-background&docid=f2_cw9GJJiFVBM&tbnid=Tk0_pMueHr-lyM&vet=12ahUKEwja94zQu8yIAxWFyDgGHQ8BIPwQM3oECH8QAA..i&w=1500&h=1100&hcb=2&ved=2ahUKEwja94zQu8yIAxWFyDgGHQ8BIPwQM3oECH8QAA');">
+        <div class="card-body">
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="productName">Doctor Name</label>
+                    <input type="text" class="form-control" placeholder="Doctor Name" name="pname" id="productName" required>
+                </div>
+              
+                <div class="form-group">
+                    <label for="productImage"> Image</label>
+                    <input type="file" class="form-control" id="productImage" name="img" value="choose file" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="category" >Category</label>
+                        <select id="category" class="form-control" name="cat" required>
+                            {% for i in cat %}
+                            <option value="{{i.name}}">{{i.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productPrice"></label>
+                        <input type="number" class="form-control" name="price" placeholder="phone number " id="productPrice" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="desc" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if error %}
+<script>
+    alert('1 Product Added Successfully');
+</script>
+{% endif %}
+{% endblock %}

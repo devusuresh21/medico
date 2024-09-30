@@ -1,0 +1,67 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+<style>
+.prjdiv:hover {
+    box-shadow: 0 0 20px 0 rgba(246, 242, 242, 0.3);
+    transform: translateY(-20px);
+}
+
+body {
+    background-image: url('https://img.freepik.com/free-photo/cute-group-beagle-puppy-sitting-panting_1150-18200.jpg?t=st=1709305097~exp=1709308697~hmac=01811ceb0948e3e5e3d71785d7147dcb1484327f74f35739392aeb00f181ced4&w=1380');
+    background-size: cover;
+    background-position: center;
+    padding: 350px 0 0; /* Adjust padding to keep navbar visible */
+    color: #0b0b0c; /* Set text color to white for better visibility */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+.container {
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.5); /* Add transparency to navbar */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure navbar appears above other content */
+}
+
+.navbar-brand {
+    color: #ffffff !important; /* Set navbar brand text color to white */
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important; /* Set navbar link text color to white */
+}
+
+</style>
+
+<div class="container">
+    <h2 class="text-center" style="font-family: 'Monotype Corsiva'; color: #0e0e0e; font-weight: bold;">Contact Us</h2>
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-sm-3 prjdiv">
+            <h4 class="text-center"><i class="fas fa-phone-square"></i> Contact</h4>
+            <p class="text-center" style="font-weight: bold;">+91 8602768216</p>
+        </div>
+        <div class="col-sm-3 prjdiv">
+            <h4 class="text-center"><i class="fas fa-envelope"></i> Email ID</h4>
+            <p class="text-center" style="font-weight: bold;">tailsandwiggles@gmail.com</p>
+        </div>
+        <div class="col-sm-3 prjdiv">
+            <h4 class="text-center"><i class="fas fa-address-card"></i> Address</h4>
+            <p class="text-center" style="font-weight: bold;">TAILS & WIGGLES CENTAL.JC KUTTIKKANAM</p>
+        </div>
+        <div class="col-sm-3 prjdiv">
+            <h4 class="text-center"><i class="far fa-clock"></i> Office Hours</h4>
+            <p class="text-center" style="font-weight: bold;">10:00 am to 7:00 pm</p>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

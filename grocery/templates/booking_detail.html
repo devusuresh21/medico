@@ -1,0 +1,81 @@
+{% extends 'navigation.html' %}
+{% block body %}
+<style>
+    .bg-image {
+        background-image: url('https://img.freepik.com/free-photo/artistic-blurry-colorful-wallpaper-background_58702-8192.jpg?t=st=1709301759~exp=1709305359~hmac=0f0d3dc5b7873a4ea2867bda6ce942d842ab53e815e996779e1512caa634121d&w=996');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="container bg-image">
+<center><h2 style="color:red;margin-top:2%">View Booking Detail</h2></center><hr>
+
+|<div class="container" style="border:1px solid white">
+<div class="row">
+
+    <div class="col-md-6" style="height:100px;">
+                <center>
+                    <a href="{% url 'view_product' 0 %}" class="btn btn-lg btn-success text-light text-capitalize btn-continue-shopping">
+                        <ion-icon style="margin-right: 8px;" name="pricetags"></ion-icon>Continue Shopping
+                    </a>
+                    </center>
+            </div>
+
+    <div class="col-md-6" style="height:100px;">
+                <center><a style="margin-top:1%;width:100%;border:1px solid rgb(223, 22, 159)" class="btn btn-default btn-lg text-dark text-capitalize">Total : {{total.total}}</a></center>
+            </div>
+</div>
+    </div>
+
+{% for i in product %}
+{% if i.id in book %}
+<center>
+    <style>
+        .container{
+            border:1px solid rgb(221, 23, 188);
+            border-radius:6px;
+            margin-bottom:5%;
+        }.container1 ,.contain{
+            border:1px solid black;
+            border-radius:6px;
+            width:70%;
+            border:1px solid black;
+
+        }
+    </style>
+<div class="container" style="margin-top:2%;height:150px;width:80%">
+    <div class="row" style="height:90%">
+        <div class="col-md-4" style="height:120px">
+            <img src="{{i.image.url}}" style="width:30%;height:100px;border:1px solid darkgray;margin-top:5%">
+        </div>
+
+        <div class="col-md-4" style="height:100px">
+            <h5 style="margin-top:5%">{{i.name}}</h5><hr>
+        <h6>Price : Rs.{{i.price}}</h6>
+        <p>{{i.desc}}</p>
+        </div>
+            <div class="col-md-4" style="height:100px;">
+                <h4 style="margin-top:15%;color:blue">Booked Successfully</h4>
+        </div>
+    </div>
+</div>
+    </center>
+{% endif %}
+{% endfor %}
+|<div class="container" style="border:1px solid white">
+<div class="row">
+
+    <div class="col-md-6" style="height:100px;">
+                <center>
+                    <a href="{% url 'view_product' 0 %}" class="btn btn-lg btn-success text-light text-capitalize btn-continue-shopping">
+                        <ion-icon style="margin-right: 8px;" name="pricetags"></ion-icon>Continue Shopping
+                    </a>
+                    </center>
+            </div>
+
+    <div class="col-md-6" style="height:100px;">
+                <center><a style="margin-top:1%;width:100%;border:1px solid black" class="btn btn-default btn-lg text-dark text-capitalize">Total : {{total.total}}</a></center>
+            </div>
+</div>
+    </div>
+{% endblock %}

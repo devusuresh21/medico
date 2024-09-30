@@ -1,0 +1,142 @@
+{% extends 'navigation.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .result-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result-container h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .result-container p {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        td {
+            background-color: #fff;
+        }
+        .message {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Medicine Use and Side Effects</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="medicine_name">Medicine Name:</label>
+            <input type="text" id="medicine_name" name="medicine_name" placeholder="e.g., Paracetamol" required><br>
+
+            <input type="submit" value="Get Information">
+        </form>
+
+        <div class="result-container">
+            {% if medicine_info %}
+                <h2>Medicine Information</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Medicine</th>
+                            <th>Use</th>
+                            <th>Side Effects</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ medicine_info.name }}</td>
+                            <td>{{ medicine_info.use }}</td>
+                            <td>{{ medicine_info.side_effects }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="message">Enter a medicine name to get its use and potential side effects.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,19 @@
+<!-- respond_to_product_request.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Respond to Product Request</title>
+</head>
+<body>
+    <h1>Respond to Product Request</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="response">Response:</label><br>
+        <textarea id="response" name="response"></textarea><br>
+        <button type="submit">Submit Response</button>
+    </form>
+</body>
+</html>
+

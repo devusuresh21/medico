@@ -1,0 +1,196 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!-- Custom styles for this template -->
+<link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+<style>
+  /* Custom CSS styles for cards */
+.card {
+    border: none; /* Removed the border for a cleaner look */
+    border-radius: 15px; /* Increased the border radius for a more rounded look */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Added smooth transition for hover effect */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow for a more prominent card */
+    background-color: #ffffff; /* White background for the card */
+    overflow: hidden; /* Prevents overflow of content */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Lifts the card when hovered */
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2); /* Adds a deeper shadow on hover */
+}
+
+.card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 220px; /* Increased height for a more impactful image */
+    object-fit: cover; /* Ensures the image covers the card neatly */
+    filter: brightness(95%); /* Slight darkening of the image */
+    transition: filter 0.3s ease; /* Smooth transition for image effects */
+}
+
+.card-img-top:hover {
+    filter: brightness(100%); /* Restores brightness when image is hovered */
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center; /* Centered content within the card */
+}
+
+.card-title {
+    font-size: 22px; /* Increased font size for the title */
+    font-weight: bold;
+    margin-bottom: 12px; /* More space between title and text */
+    color: #333333; /* Darker color for the title */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.card-title:hover {
+    color: #007bff; /* Changes title color on hover */
+}
+
+.card-text {
+    font-size: 16px;
+    color: #555555; /* Muted color for card text */
+    margin-bottom: 20px;
+}
+
+.card-footer {
+    background-color: #f8f9fa; /* Light background for the footer */
+    border-top: none; /* Removed border between body and footer */
+    padding: 15px;
+    text-align: center; /* Centered footer content */
+}
+
+.card-price {
+    font-size: 20px; /* Larger font size for the price */
+    font-weight: bold;
+    color: #007bff; /* Primary blue color for the price */
+}
+
+.btn-block {
+    width: 100%;
+    background-color: #28a745; /* Green button for a purchase call-to-action */
+    color: #ffffff;
+    border: none;
+    border-radius: 30px; /* More rounded button for a modern feel */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth button animation */
+}
+
+.btn-block:hover {
+    background-color: #218838; /* Darker shade of green on hover */
+    transform: scale(1.05); /* Button grows slightly on hover */
+}
+
+/* Horizontal Sidebar */
+#horizontal-sidebar {
+    background-color: #f8f9fa;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+
+.sidebar-item {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 8px;
+    background-color: #007bff; /* Primary color for sidebar items */
+    border-radius: 50px; /* Fully rounded sidebar buttons */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Ensure the page content is properly aligned */
+#page-content-wrapper {
+    padding: 25px;
+}
+
+</style>
+
+<!-- Page Content -->
+<div class="d-flex flex-column">
+  <!-- Horizontal Sidebar -->
+  <div id="horizontal-sidebar">
+    
+    {% for i in cat %}
+    <a href="{% url 'view_product' i.id %}" class="sidebar-item">{{i.name}}</a>
+    {% endfor %}
+  </div>
+  
+  <!-- Search Form -->
+  
+
+  <div class="d-flex flex-column" id="wrapper">
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <center>
+          <h4 style="color:rgb(12, 27, 114)"></h4> 
+        </center>
+        <hr>
+        <div class="container-fluid">
+          <h1 class="text-center mt-5 mb-5"></h1>
+          <h2>{{cat1.name}}</h2>
+          <hr>
+          <div class="row">
+            {% for j in pro1 %}
+            <div class="col-md-3 mb-4">
+              <div class="card h-100">
+                <img class="card-img-top" src="{{j.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{j.name}}</h5>
+                  <p class="card-text">{{j.desc}}</p>
+                  <p class="card-price">
+                    <ion-icon name="call" class="phone-icon"></ion-icon>
+                     : {{j.price}} <span style="font-size: smaller; color: inherit;"></span>
+                </p>
+                
+                </div>
+                <div class="card-footer">
+                  <form action="{% url 'add_cart' j.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-block">View Details</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+</div>
+<!-- /#top-wrapper -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Menu Toggle Script -->
+<script>
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}

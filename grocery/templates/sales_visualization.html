@@ -1,0 +1,38 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Signup Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Customer Signup Visualization</h1>
+    <div id="customer-chart"></div>
+
+    <script>
+        const customerData = {{ customer_summary|safe }};
+        const trace = {
+            x: customerData.map(item => item.date_joined),
+            y: customerData.map(item => item.size),  // 'size' reflects the count of customers
+            type: 'bar'
+        };
+
+        const layout = {
+            title: 'Customer Signups Over Time',
+            xaxis: {
+                title: 'Date'
+            },
+            yaxis: {
+                title: 'Number of Signups'
+            }
+        };
+
+        Plotly.newPlot('customer-chart', [trace], layout);
+    </script>
+</body>
+</html>
+{% endblock %}
